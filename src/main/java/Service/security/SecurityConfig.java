@@ -89,7 +89,7 @@ public class SecurityConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
+        configuration.setAllowedOrigins(List.of("http://localhost:3000","https://service-now-clone-frontend.vercel.app"));
 
         configuration.setAllowedMethods(List.of(
                 "GET",
