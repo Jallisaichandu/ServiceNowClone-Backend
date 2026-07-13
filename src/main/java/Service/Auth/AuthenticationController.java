@@ -91,5 +91,29 @@ public class AuthenticationController {
             this.name = name;
         }
     }
+    @PostMapping("/register")
+    public String register(@RequestBody RegisterRequest request) {
+
+        User existingUser = userRepository.findByEmail(request.getEmail());
+
+        if (existingUser != null) {
+            return "Email already exists";
+        }
+
+        User user = new User();
+
+        user.setName(request.getName());
+        user.setEmail(request.getEmail());
+
+        // Save password as plain text (same as your current login)
+        user.setPassword(request.getPassword());
+
+        // Every new user gets USER role
+        user.setRole("USER");
+
+        userRepository.save(user);
+
+        return "Registration Successful";
+    }
 }
 
